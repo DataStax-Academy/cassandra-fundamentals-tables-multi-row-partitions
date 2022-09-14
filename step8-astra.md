@@ -38,7 +38,7 @@ DROP TABLE IF EXISTS ratings_by_user;
 
 ✅ Create the new table:
 ```
-CREATE TABLE ratings_by_user (
+CREATE TABLE IF NOT EXISTS ratings_by_user (
   email TEXT,
   year INT,
   title TEXT,

@@ -36,7 +36,7 @@ such as *movies with the same title* in the example below. Of course, whether yo
 depends on whether you need to support queries that retrieve movies based on titles.
  
 ```
-CREATE TABLE movies_by_title (
+CREATE TABLE IF NOT EXISTS movies_by_title (
   title TEXT,
   year INT,
   duration INT,

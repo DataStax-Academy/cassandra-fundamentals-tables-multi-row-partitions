@@ -41,7 +41,8 @@ We will insert 4 rows into 2 partitions:
 
 ✅ Create the table:
 ```
-CREATE TABLE ratings_by_user (
+DROP TABLE IF EXISTS ratings_by_user;
+CREATE TABLE IF NOT EXISTS ratings_by_user (
   email TEXT,
   title TEXT,
   year INT,

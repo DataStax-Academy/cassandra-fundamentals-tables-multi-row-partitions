@@ -45,7 +45,7 @@ This table is for you to create!
   <summary>Solution</summary>
 
 ```
-CREATE TABLE movies_by_user (
+CREATE TABLE IF NOT EXISTS movies_by_user (
   email TEXT,
   title TEXT,
   year INT,

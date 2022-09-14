@@ -43,7 +43,7 @@ This table is for you to create!
   <summary>Solution</summary>
 
 ```
-CREATE TABLE movies_by_actor (
+CREATE TABLE IF NOT EXISTS movies_by_actor (
   first_name TEXT,
   last_name TEXT,
   title TEXT,

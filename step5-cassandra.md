@@ -41,7 +41,7 @@ as a *simple clustering key*. We will insert 4 rows into 3 partitions:
 
 ✅ Create the table:
 ```
-CREATE TABLE ratings_by_movie (
+CREATE TABLE IF NOT EXISTS ratings_by_movie (
   title TEXT,
   year INT,
   email TEXT,

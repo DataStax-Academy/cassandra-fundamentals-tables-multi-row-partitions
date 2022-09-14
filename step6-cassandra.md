@@ -44,7 +44,7 @@ This table is for you to create!
   <summary>Solution</summary>
 
 ```
-CREATE TABLE actors_by_movie (
+CREATE TABLE IF NOT EXISTS actors_by_movie (
   title TEXT,
   year INT,
   first_name TEXT,
