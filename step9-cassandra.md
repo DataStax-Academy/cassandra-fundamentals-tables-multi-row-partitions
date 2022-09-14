@@ -12,8 +12,8 @@
  <a href='command:katapod.loadPage?[{"step":"step8-cassandra"}]'
    class="btn btn-dark navigation-top-left">⬅️ Back
  </a>
-<span class="step-count"> Step 9 of 9</span>
- <a href='command:katapod.loadPage?[{"step":"finish-cassandra"}]'
+<span class="step-count"> Step 9 of 12</span>
+ <a href='command:katapod.loadPage?[{"step":"step10-cassandra"}]'
     class="btn btn-dark navigation-top-right">Next ➡️
   </a>
 </div>
@@ -54,7 +54,7 @@ DROP TABLE movies;
  <a href='command:katapod.loadPage?[{"step":"step8-cassandra"}]'
    class="btn btn-dark navigation-bottom-left">⬅️ Back
  </a>
- <a href='command:katapod.loadPage?[{"step":"finish-cassandra"}]'
+ <a href='command:katapod.loadPage?[{"step":"step10-cassandra"}]'
     class="btn btn-dark navigation-bottom-right">Next ➡️
   </a>
 </div>

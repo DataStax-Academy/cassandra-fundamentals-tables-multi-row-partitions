@@ -12,7 +12,7 @@
  <a href='command:katapod.loadPage?[{"step":"step10-astra"}]'
    class="btn btn-dark navigation-top-left">⬅️ Back
  </a>
-<span class="step-count"> Step 9 of 9</span>
+<span class="step-count"> Step 11 of 12</span>
  <a href='command:katapod.loadPage?[{"step":"step12-astra"}]'
     class="btn btn-dark navigation-top-right">Next ➡️
   </a>
@@ -54,7 +54,6 @@ DROP TABLE movies;
  <a href='command:katapod.loadPage?[{"step":"step10-astra"}]'
    class="btn btn-dark navigation-top-left">⬅️ Back
  </a>
-<span class="step-count"> Step 9 of 9</span>
  <a href='command:katapod.loadPage?[{"step":"step12-astra"}]'
     class="btn btn-dark navigation-top-right">Next ➡️
   </a>
