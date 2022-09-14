@@ -50,12 +50,13 @@ DROP TABLE movies;
 ```
 
 <!-- NAVIGATION -->
-<div id="navigation-bottom" class="navigation-bottom">
+<div id="navigation-top" class="navigation-top">
  <a href='command:katapod.loadPage?[{"step":"step10-astra"}]'
-   class="btn btn-dark navigation-bottom-left">⬅️ Back
+   class="btn btn-dark navigation-top-left">⬅️ Back
  </a>
+<span class="step-count"> Step 9 of 9</span>
  <a href='command:katapod.loadPage?[{"step":"step12-astra"}]'
-    class="btn btn-dark navigation-bottom-right">Next ➡️
+    class="btn btn-dark navigation-top-right">Next ➡️
   </a>
 </div>
 
