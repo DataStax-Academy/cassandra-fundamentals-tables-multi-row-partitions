@@ -13,16 +13,16 @@
     <div class="container px-4 py-2">
      <div class="row g-4 py-2 row-cols-1 row-cols-lg-1">
       <div class="feature col div-choice">
-            <div class="scenario-description">Learn how to create tables that can only have one row per partition in a Cassandra NoSQL database.</div>
+            <div class="scenario-description">Learn how to create tables that can have many rows per partition in a Cassandra NoSQL database.</div>
             <ul>
               <li><span class="scenario-description-attribute">Difficulty</span>: Beginner</li>
-              <li><span class="scenario-description-attribute">Time</span>: 15 minutes</li>
+              <li><span class="scenario-description-attribute">Time</span>: 20 minutes</li>
             </ul>
             <div class="scenario-objectives">In this hands-on lab, you will:</div>
             <ul>
               <li><span class="scenario-objective">Create tables using the CQL <code>CREATE TABLE</code> statement</span></li>
-              <li><span class="scenario-objective">Learn about tables with <i>single-row partitions</i></span></li>
-              <li><span class="scenario-objective">Understand the difference between <i>simple</i> and <i>composite</i> partition keys</span></li>
+              <li><span class="scenario-objective">Learn about tables with <i>multi-row partitions</i></span></li>
+              <li><span class="scenario-objective">Understand how row <i>ordering</i> within a partition works</span></li>
               <li><span class="scenario-objective">Practice several useful CQL statements and CQL shell commands that work with tables</span></li>
             </ul>
       </div>
