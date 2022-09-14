@@ -31,22 +31,22 @@ DESCRIBE TABLES;
 
 ✅ Output all CQL statements that can be used to recreate the given table:
 ```
-DESCRIBE TABLE movies;
+DESCRIBE TABLE ratings_by_user;
 ```
 
 ✅ Alter the given table:
 ```
-ALTER TABLE movies ADD country TEXT;
+ALTER TABLE ratings_by_user DROP age;
 ```
 
 ✅ Delete all rows from the table:
 ```
-TRUNCATE movies;
+TRUNCATE ratings_by_user;
 ```
 
 ✅ Remove the given table:
 ```
-DROP TABLE movies;
+DROP TABLE ratings_by_user;
 ```
 
 <!-- NAVIGATION -->

@@ -20,33 +20,37 @@
 
 <!-- CONTENT -->
 
-<div class="step-title">Working with tables</div>
+<div class="step-title">What tables with multi-row partitions are good for?</div>
 
-Try the following CQL shell commands and CQL statements that are applicable to tables. 
+In Cassandra, tables are designed to support specific queries. While tables with 
+single-row partitions are usually used to store and retrieve entities,  
+tables with multi-row partitions are great for capturing relationships.
+For example, we used tables `ratings_by_user` and `ratings_by_movie` to store and query relationships like 
+*user rated many movies* and its reverse *movie was rated by many users*, respectively.
+Tables with multi-row partitions also have a greater flexibility in terms of how data
+can be retrieved, which includes equality queries, inequality or range queries, 
+and ordering queries.
 
-✅ List the names of all tables in the current keyspace:
+Finally, tables with multi-row partitions are also suitable for storing entities related based on some attribute values,
+such as *movies with the same title* in the example below. Of course, whether you need such a table in your data model or not
+depends on whether you need to support queries that retrieve movies based on titles.
+ 
 ```
-DESCRIBE TABLES;
-```
+CREATE TABLE movies_by_title (
+  title TEXT,
+  year INT,
+  duration INT,
+  avg_rating FLOAT,
+  PRIMARY KEY ((title), year)
+) WITH CLUSTERING ORDER BY (year DESC);
 
-✅ Output all CQL statements that can be used to recreate the given table:
-```
-DESCRIBE TABLE movies;
-```
+INSERT INTO movies_by_title (title, year, duration, avg_rating) 
+VALUES ('Alice in Wonderland', 2010, 108, 6.00);
+INSERT INTO movies_by_title (title, year, duration, avg_rating) 
+VALUES ('Alice in Wonderland', 1951, 75, 7.08);
 
-✅ Alter the given table:
-```
-ALTER TABLE movies ADD country TEXT;
-```
-
-✅ Delete all rows from the table:
-```
-TRUNCATE movies;
-```
-
-✅ Remove the given table:
-```
-DROP TABLE movies;
+SELECT * FROM movies_by_title
+WHERE title = 'Alice in Wonderland';
 ```
 
 <!-- NAVIGATION -->

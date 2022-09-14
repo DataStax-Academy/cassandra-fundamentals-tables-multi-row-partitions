@@ -20,47 +20,65 @@
 
 <!-- CONTENT -->
 
-<div class="step-title">Create table "users"</div>
+<div class="step-title">Create table "ratings_by_user"</div>
 
-Our first table will store information about users as shown below. To define 
-this table with *single-row partitions*, we can use `email`
-as a *simple partition key*.
+Our first table will store information about movie ratings 
+organized by users, such that each partition will store all ratings left by one 
+particular user. To define 
+this table with *multi-row partitions*, we can use `email`, which uniquely identifies a user,
+as a *simple partition key*, and `title` and `year`, which uniquely identify a movie, as a *composite clustering key*.
+We will insert 4 rows into 2 partitions:
 
-| email            | name | age | date_joined |
-|------------------|------|-----|-------------|
-| joe@datastax.com |  Joe |  25 |  2020-01-01 |
-| jen@datastax.com |  Jen |  27 |  2020-01-01 | 
+| email            | title               | year | rating |
+|------------------|---------------------|------|--------|
+| <span style="background-color:#F5B7B1">joe@datastax.com</span> | Alice in Wonderland | 2010 |      9 |
+| <span style="background-color:#F5B7B1">joe@datastax.com</span> | Edward Scissorhands | 1990 |     10 |
+| <span style="background-color:#AED6F1">jen@datastax.com</span> | Alice in Wonderland | 1951 |      8 |
+| <span style="background-color:#AED6F1">jen@datastax.com</span> | Alice in Wonderland | 2010 |     10 |
+
 
 <br/>
 
 ✅ Create the table:
 ```
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE ratings_by_user (
   email TEXT,
-  name TEXT,
-  age INT,
-  date_joined DATE,
-  PRIMARY KEY ((email))
+  title TEXT,
+  year INT,
+  rating INT,
+  PRIMARY KEY ((email), title, year)
 );
 ```
 
 ✅ Insert the rows:
 ```
-INSERT INTO users (email, name, age, date_joined) 
-VALUES ('joe@datastax.com', 'Joe', 25, '2020-01-01');
-INSERT INTO users (email, name, age, date_joined) 
-VALUES ('jen@datastax.com', 'Jen', 27, '2020-01-01');
+INSERT INTO ratings_by_user (email, title, year, rating) 
+VALUES ('joe@datastax.com', 'Alice in Wonderland', 2010, 9);
+INSERT INTO ratings_by_user (email, title, year, rating)  
+VALUES ('joe@datastax.com', 'Edward Scissorhands', 1990, 10);
+INSERT INTO ratings_by_user (email, title, year, rating) 
+VALUES ('jen@datastax.com', 'Alice in Wonderland', 2010, 10);
+INSERT INTO ratings_by_user (email, title, year, rating)  
+VALUES ('jen@datastax.com', 'Alice in Wonderland', 1951, 8);
 ```
 
 ✅ Retrieve one row:
 ```
-SELECT * FROM users
+SELECT * FROM ratings_by_user
+WHERE email = 'joe@datastax.com'
+  AND title = 'Alice in Wonderland'
+  AND year = 2010;
+```
+
+✅ Retrieve one partition:
+```
+SELECT * FROM ratings_by_user
 WHERE email = 'joe@datastax.com';
 ```
 
 ✅ Retrieve all rows:
 ```
-SELECT * FROM users;
+SELECT * FROM ratings_by_user;
 ```
 
 <!-- NAVIGATION -->

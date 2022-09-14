@@ -20,34 +20,105 @@
 
 <!-- CONTENT -->
 
-<div class="step-title">Working with tables</div>
+<div class="step-title">Create table "movies_by_user"</div>
 
-Try the following CQL shell commands and CQL statements that are applicable to tables. 
+This next table will store information about movies that users watched, 
+such that each partition will store all movies for one particular user 
+ordered by the dates of when the user watched them. Here are 6 rows to be inserted into 2 partitions:
 
-✅ List the names of all tables in the current keyspace:
+| email            | watched_on | title               | year |
+|------------------|------------|---------------------|------|
+| <span style="background-color:#F5B7B1">joe@datastax.com</span> | 2020-04-28 | Edward Scissorhands | 1990 |
+| <span style="background-color:#F5B7B1">joe@datastax.com</span> | 2020-03-08 | Alice in Wonderland | 2010 | 
+| <span style="background-color:#F5B7B1">joe@datastax.com</span> | 2020-02-13 |         Toy Story 3 | 2010 |
+| <span style="background-color:#F5B7B1">joe@datastax.com</span> | 2020-01-22 |       Despicable Me | 2010 |
+| <span style="background-color:#F5B7B1">joe@datastax.com</span> | 2019-12-30 | Alice in Wonderland | 1951 |
+| <span style="background-color:#ABEBC6">jen@datastax.com</span> | 2011-10-01 | Alice in Wonderland | 2010 |
+
+
+This table is for you to create!
+
+<br/>
+
+✅ Create the table:
+<details>
+  <summary>Solution</summary>
+
 ```
-DESCRIBE TABLES;
+CREATE TABLE movies_by_user (
+  email TEXT,
+  title TEXT,
+  year INT,
+  watched_on DATE,
+  PRIMARY KEY ((email), watched_on, title, year)
+) WITH CLUSTERING ORDER BY (watched_on DESC);
 ```
 
-✅ Output all CQL statements that can be used to recreate the given table:
+</details>
+
+<br/>
+
+✅ Insert the rows:
+<details>
+  <summary>Solution</summary>
+
 ```
-DESCRIBE TABLE movies;
+INSERT INTO movies_by_user (email, watched_on, title, year) 
+VALUES ('joe@datastax.com', '2020-01-22', 'Despicable Me', 2010);
+INSERT INTO movies_by_user (email, watched_on, title, year) 
+VALUES ('joe@datastax.com', '2020-02-13', 'Toy Story 3', 2010);
+INSERT INTO movies_by_user (email, watched_on, title, year) 
+VALUES ('joe@datastax.com', '2019-12-30', 'Alice in Wonderland', 1951);
+INSERT INTO movies_by_user (email, watched_on, title, year) 
+VALUES ('joe@datastax.com', '2020-03-08', 'Alice in Wonderland', 2010);
+INSERT INTO movies_by_user (email, watched_on, title, year) 
+VALUES ('joe@datastax.com', '2020-04-28', 'Edward Scissorhands', 1990);
+INSERT INTO movies_by_user (email, watched_on, title, year) 
+VALUES ('jen@datastax.com', '2011-10-01', 'Alice in Wonderland', 2010);
 ```
 
-✅ Alter the given table:
+</details>
+
+<br/>
+
+✅ Retrieve one partition:
+<details>
+  <summary>Solution</summary>
+
 ```
-ALTER TABLE movies ADD country TEXT;
+SELECT * FROM movies_by_user
+WHERE email = 'joe@datastax.com';
 ```
 
-✅ Delete all rows from the table:
+</details>
+
+<br/>
+
+✅ Retrieve one partition using the reverse row ordering:
+<details>
+  <summary>Solution</summary>
+
 ```
-TRUNCATE movies;
+SELECT * FROM movies_by_user
+WHERE email = 'joe@datastax.com'
+ORDER BY watched_on ASC;
 ```
 
-✅ Remove the given table:
+</details>
+
+<br/>
+
+✅ Retrieve a subset of rows from one partition:
+<details>
+  <summary>Solution</summary>
+
 ```
-DROP TABLE movies;
+SELECT * FROM movies_by_user
+WHERE email = 'joe@datastax.com'
+  AND watched_on > '2020-01-01';
 ```
+
+</details>
 
 <!-- NAVIGATION -->
 <div id="navigation-bottom" class="navigation-bottom">
