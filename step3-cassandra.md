@@ -34,7 +34,7 @@ cqlsh
 
 ✅ Create the keyspace:
 ```
-CREATE KEYSPACE tables_multi_row_partitions
+CREATE KEYSPACE ks_multi_row_partitions
 WITH replication = {
   'class': 'NetworkTopologyStrategy', 
   'DC-Houston': 1 };
@@ -42,7 +42,7 @@ WITH replication = {
 
 ✅ Set the current working keyspace:
 ```
-USE tables_multi_row_partitions;
+USE ks_multi_row_partitions;
 ```
 
 <!-- NAVIGATION -->
