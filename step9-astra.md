@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS movies_by_user (
   year INT,
   watched_on DATE,
   PRIMARY KEY ((email), watched_on, title, year)
-) WITH CLUSTERING ORDER BY (watched_on DESC);
+) WITH CLUSTERING ORDER BY (watched_on DESC, title ASC, year ASC);
 ```
 
 </details>
